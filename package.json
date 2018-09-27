@@ -1,0 +1,32 @@
+{
+  "name": "htmlvue-loader",
+  "version": "1.0.0",
+  "description": "Html to Vue Loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirokiosame/htmlvue-loader.git"
+  },
+  "author": "Hiroki Osame",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hirokiosame/htmlvue-loader/issues"
+  },
+  "homepage": "https://github.com/hirokiosame/htmlvue-loader#readme",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "memory-fs": "^0.4.1",
+    "unionfs": "^3.0.2",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.20.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "outdent": "^0.7.0"
+  }
+}
