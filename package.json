@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "loader-utils": "^1.1.0",
     "outdent": "^0.7.0"
   }
 }

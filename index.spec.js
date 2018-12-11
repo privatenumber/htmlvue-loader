@@ -9,7 +9,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const Vue = require('vue');
 
 
-function build(input) {
+function build(input, options = {}) {
 	return new Promise((resolve, reject) => {
 		const mfs = new MemoryFS();
 
@@ -28,7 +28,10 @@ function build(input) {
 						test: /\.html$/,
 						use: [
 							'vue-loader',
-							'htmlvue-loader',
+							{
+								loader: 'htmlvue-loader',
+								options,
+							},
 						],
 					},
 				],
@@ -91,12 +94,12 @@ test('Multi-node markup', async () => {
 	expect(vnode.tag).toBe('div');
 
 	const [block1, text, block2] = vnode.children;
+
 	expect(block1.tag).toBe('div');
 	expect(block1.children[0].text).toBe('Block 1');
 	expect(block2.tag).toBe('div');
 	expect(block2.children[0].text).toBe('Block 2');
 });
-
 
 test('SVG', async () => {
 	const built = await build(outdent`
@@ -105,4 +108,25 @@ test('SVG', async () => {
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
+});
+
+
+test('SVG v-pre', async () => {
+	const built = await build(outdent`
+		<svg xmlns="http://www.w3.org/2000/svg"/>
+	`, { vPre: true });
+
+	const vnode = run(built);
+	expect(vnode.tag).toBe('svg');
+	console.log(vnode);
+});
+
+test('SVG v-once', async () => {
+	const built = await build(outdent`
+		<svg xmlns="http://www.w3.org/2000/svg"/>
+	`, { vOnce: true });
+
+	const vnode = run(built);
+	expect(vnode.tag).toBe('svg');
+	console.log(vnode);
 });
