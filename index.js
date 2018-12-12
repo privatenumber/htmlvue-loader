@@ -15,16 +15,13 @@ module.exports = function(src) {
 		$ = $_;
 	}
 
-	console.log(options);
-	if (options.vPre) {
-		$('*:first-child').attr('v-pre', true);
-	}
-
 	if (options.vOnce) {
 		$('*:first-child').attr('v-once', true);
 	}
 
-	const html = $('body').html().replace('="true"', '');
+	if (options.vPre) {
+		$('*:first-child').attr('v-pre', true);
+	}
 
-	return `<template>${html}</template>`;
+	return `<template>${$('body').html()}</template>`;
 };
