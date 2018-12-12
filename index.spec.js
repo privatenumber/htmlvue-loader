@@ -108,6 +108,8 @@ test('SVG', async () => {
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
+	expect(vnode.data.pre).toBe(undefined);
+	expect(vnode.isStatic).toBe(false);
 });
 
 
@@ -118,7 +120,7 @@ test('SVG v-pre', async () => {
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
-	console.log(vnode);
+	expect(vnode.data.pre).toBe(true);
 });
 
 test('SVG v-once', async () => {
@@ -128,5 +130,16 @@ test('SVG v-once', async () => {
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
-	console.log(vnode);
+	expect(vnode.isStatic).toBe(true);
+});
+
+test('SVG v-pre & v-once', async () => {
+	const built = await build(outdent`
+		<svg xmlns="http://www.w3.org/2000/svg"/>
+	`, { vPre: true, vOnce: true });
+
+	const vnode = run(built);
+	expect(vnode.tag).toBe('svg');
+	expect(vnode.data.pre).toBe(true);
+	expect(vnode.isStatic).toBe(false);
 });
