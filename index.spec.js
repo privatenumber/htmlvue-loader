@@ -14,6 +14,7 @@ function build(input, options = {}) {
 		const mfs = new MemoryFS();
 
 		mfs.writeFileSync('/entry.html', input);
+		mfs.writeFileSync('/rand-comp.vue', '<template><div><slot /></div></template>');
 
 		const compiler = webpack({
 			mode: 'development',
@@ -24,6 +25,10 @@ function build(input, options = {}) {
 			},
 			module: {
 				rules: [
+					{
+						test: /\.vue$/,
+						use: 'vue-loader',
+					},
 					{
 						test: /\.html$/,
 						use: [
@@ -142,4 +147,31 @@ test('SVG v-pre & v-once', async () => {
 	expect(vnode.tag).toBe('svg');
 	expect(vnode.data.pre).toBe(true);
 	expect(vnode.isStatic).toBe(false);
+});
+
+test('Transformer', async () => {
+	const built = await build(outdent`
+		<svg xmlns="http://www.w3.org/2000/svg"/>
+	`, {
+		transform: svg => `<div>${svg}</div>`,
+	});
+
+	const vnode = run(built);
+	expect(vnode.tag).toBe('div');
+});
+
+test('Transformer with component registration', async () => {
+	const built = await build(outdent`
+		<svg xmlns="http://www.w3.org/2000/svg"/>
+	`, {
+		transform: {
+			transformer: svg => `<rand-comp>${svg}</rand-comp>`,
+			components: {
+				RandComp: './rand-comp.vue',
+			},
+		},
+	});
+
+	const vnode = run(built);
+	expect(vnode.componentOptions.tag).toBe('rand-comp');
 });
