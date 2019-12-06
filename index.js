@@ -7,6 +7,12 @@ module.exports = function(src) {
 
 	const options = loaderUtils.getOptions(this) || {};
 
+	const components = options.transform && options.transform.components;
+	const transformer = (options.transform && options.transform.transformer) || options.transform;
+	if (typeof transformer === 'function') {
+		src = transformer(src);
+	}
+
 	let $ = cheerio.load(src);
 
 	if ($('body').children().length > 1) {
@@ -23,5 +29,16 @@ module.exports = function(src) {
 		$('*:first-child').attr('v-pre', true);
 	}
 
-	return `<template>${$('body').html()}</template>`;
+	let output = `<template>${$('body').html()}</template>`;
+
+	if (components) {
+		output += outdent`
+		<script>
+			${ Object.entries(components).map(([k, v]) => `import ${k} from '${v}';`) }
+			export default { components: { ${Object.keys(components)} } };
+		</script>
+		`;
+	}
+
+	return output;
 };
