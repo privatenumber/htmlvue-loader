@@ -17,17 +17,17 @@
   },
   "homepage": "https://github.com/hirokiosame/htmlvue-loader#readme",
   "devDependencies": {
-    "jest": "^24.9.0",
+    "jest": "^26.0.1",
     "memory-fs": "^0.5.0",
-    "unionfs": "^4.2.0",
-    "vue": "^2.6.10",
-    "vue-loader": "^15.7.2",
-    "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.41.2"
+    "unionfs": "^4.4.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "loader-utils": "^1.2.3",
-    "outdent": "^0.7.0"
+    "loader-utils": "^2.0.0",
+    "outdent": "^0.7.1"
   }
 }
