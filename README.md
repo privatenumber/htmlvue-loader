@@ -42,7 +42,7 @@ module: {
 ...
 ```
 
-## Options
+## ⚙️ Options
 - `vPre` `<Boolean>`
   Adds [`v-pre`](https://vuejs.org/v2/api/#v-pre) to the root element.
   > Skip compilation for this element and all its children. You can use this for displaying raw mustache tags. Skipping large numbers of nodes with no directives on them can also speed up compilation.
