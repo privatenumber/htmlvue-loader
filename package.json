@@ -1,21 +1,31 @@
 {
   "name": "htmlvue-loader",
   "version": "1.1.0",
-  "description": "Html to Vue Loader",
+  "description": "Webpack loader for compiling HTML to Vue",
+  "keywords": [
+    "webpack",
+    "webpack loader",
+    "vue",
+    "html",
+    "transformation"
+  ],
+  "files": [
+    "index.js"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hirokiosame/htmlvue-loader.git"
+    "url": "git+https://github.com/privatenumber/htmlvue-loader.git"
   },
-  "author": "Hiroki Osame",
+  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hirokiosame/htmlvue-loader/issues"
+    "url": "https://github.com/privatenumber/htmlvue-loader/issues"
   },
-  "homepage": "https://github.com/hirokiosame/htmlvue-loader#readme",
+  "homepage": "https://github.com/privatenumber/htmlvue-loader#readme",
   "devDependencies": {
     "jest": "^26.0.1",
     "memory-fs": "^0.5.0",
