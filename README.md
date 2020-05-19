@@ -17,7 +17,7 @@ Webpack loader for compiling HTML to Vue
 
 ### Install
 ```sh
-npm i htmlvue-loader
+npm i -D htmlvue-loader
 ```
 
 ### Add to your Webpack config
