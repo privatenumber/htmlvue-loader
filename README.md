@@ -8,11 +8,11 @@
 Webpack loader for compiling HTML to Vue
 
 ## :raising_hand: Why?
+- 🚰 **Pipes to `vue-loader`** and doesn't depend on `vue-template-compiler`
 - ✍️ **Supports SVG** and any other XML format!
 - ♻️ **Reusability** Preserve HTML/SVG files for reusability
 - ⚙️ **Configurable** Add `v-pre`, `v-once` directives and transformers
 - 🔥 **Fast** Only does the bare minimum
-
 ## :rocket: Quick setup
 
 ### Install
