@@ -13,23 +13,21 @@ module.exports = function(src) {
 		src = transformer(src);
 	}
 
-	let $ = cheerio.load(src);
+	let $ = cheerio.load(src, { xmlMode: true });
 
-	if ($('body').children().length > 1) {
-		const $_ = $.load('<div></div>');
-		$_('div').html($('body').html());
-		$ = $_;
+	if ($.root().children().length > 1) {
+		$ = cheerio.load(`<div>${$.xml()}</div>`, { xmlMode: true });
 	}
 
 	if (options.vOnce) {
-		$('*:first-child').attr('v-once', true);
+		$.root().children().first().attr('v-once', 'true');
 	}
 
 	if (options.vPre) {
-		$('*:first-child').attr('v-pre', true);
+		$.root().children().first().attr('v-pre', 'true');
 	}
 
-	let output = `<template>${$('body').html()}</template>`;
+	let output = `<template>${$.xml()}</template>`;
 
 	if (components) {
 		output += outdent`
