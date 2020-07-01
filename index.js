@@ -2,7 +2,7 @@ const outdent = require('outdent');
 const cheerio = require('cheerio');
 const loaderUtils = require('loader-utils');
 
-module.exports = function(src) {
+module.exports = function (src) {
 	this.cacheable(true);
 
 	const options = loaderUtils.getOptions(this) || {};
@@ -34,7 +34,7 @@ module.exports = function(src) {
 	if (components) {
 		output += outdent`
 		<script>
-			${ Object.entries(components).map(([k, v]) => `import ${k} from '${v}';`) }
+			${Object.entries(components).map(([k, v]) => `import ${k} from '${v}';`)}
 			export default { components: { ${Object.keys(components)} } };
 		</script>
 		`;

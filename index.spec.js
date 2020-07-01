@@ -4,10 +4,9 @@ const outdent = require('outdent');
 const webpack = require('webpack');
 const MemoryFS = require('memory-fs');
 const fs = require('fs');
-const { ufs } = require('unionfs');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const {ufs} = require('unionfs');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const Vue = require('vue');
-
 
 function build(input, options = {}) {
 	return new Promise((resolve, reject) => {
@@ -20,7 +19,7 @@ function build(input, options = {}) {
 			mode: 'development',
 			resolveLoader: {
 				alias: {
-					'htmlvue-loader': htmlvueLoader
+					'htmlvue-loader': htmlvueLoader,
 				},
 			},
 			module: {
@@ -54,7 +53,7 @@ function build(input, options = {}) {
 		compiler.inputFileSystem = ufs.use(fs).use(mfs);
 		compiler.outputFileSystem = mfs;
 
-		compiler.run(function (err, stats) {
+		compiler.run((err, stats) => {
 			if (err) {
 				reject(err);
 				return;
@@ -71,7 +70,7 @@ function build(input, options = {}) {
 }
 
 function run(src) {
-	const { default: Component } = eval(src);
+	const {default: Component} = eval(src);
 	const vm = new Vue(Component);
 	vm.$mount();
 	return vm._vnode;
@@ -98,7 +97,7 @@ test('Multi-node markup', async () => {
 
 	expect(vnode.tag).toBe('div');
 
-	const [block1, text, block2] = vnode.children;
+	const [block1, , block2] = vnode.children;
 
 	expect(block1.tag).toBe('div');
 	expect(block1.children[0].text).toBe('Block 1');
@@ -117,11 +116,10 @@ test('SVG', async () => {
 	expect(vnode.isStatic).toBe(false);
 });
 
-
 test('SVG v-pre', async () => {
 	const built = await build(outdent`
 		<svg xmlns="http://www.w3.org/2000/svg"/>
-	`, { vPre: true });
+	`, {vPre: true});
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
@@ -131,7 +129,7 @@ test('SVG v-pre', async () => {
 test('SVG v-once', async () => {
 	const built = await build(outdent`
 		<svg xmlns="http://www.w3.org/2000/svg"/>
-	`, { vOnce: true });
+	`, {vOnce: true});
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
@@ -141,7 +139,7 @@ test('SVG v-once', async () => {
 test('SVG v-pre & v-once', async () => {
 	const built = await build(outdent`
 		<svg xmlns="http://www.w3.org/2000/svg"/>
-	`, { vPre: true, vOnce: true });
+	`, {vPre: true, vOnce: true});
 
 	const vnode = run(built);
 	expect(vnode.tag).toBe('svg');
