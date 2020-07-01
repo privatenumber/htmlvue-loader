@@ -1,11 +1,10 @@
 const htmlvueLoader = require.resolve('..');
 
-const outdent = require('outdent');
 const webpack = require('webpack');
 const MemoryFS = require('memory-fs');
 const fs = require('fs');
-const { ufs } = require('unionfs');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const {ufs} = require('unionfs');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const Vue = require('vue');
 
 function build(input, options = {}) {
@@ -13,7 +12,7 @@ function build(input, options = {}) {
 		const mfs = new MemoryFS();
 
 		if (typeof input === 'function') {
-			input(mfs);			
+			input(mfs);
 		} else {
 			mfs.writeFileSync('/entry.html', input);
 		}
@@ -22,7 +21,7 @@ function build(input, options = {}) {
 			mode: 'development',
 			resolveLoader: {
 				alias: {
-					'htmlvue-loader': htmlvueLoader
+					'htmlvue-loader': htmlvueLoader,
 				},
 			},
 			module: {
@@ -56,7 +55,7 @@ function build(input, options = {}) {
 		compiler.inputFileSystem = ufs.use(fs).use(mfs);
 		compiler.outputFileSystem = mfs;
 
-		compiler.run(function (err, stats) {
+		compiler.run((err, stats) => {
 			if (err) {
 				reject(err);
 				return;
@@ -73,7 +72,7 @@ function build(input, options = {}) {
 }
 
 function run(src) {
-	const { default: Component } = eval(src);
+	const {default: Component} = eval(src); // eslint-disable-line no-eval
 	const vm = new Vue(Component);
 	vm.$mount();
 	return vm;
