@@ -17,6 +17,14 @@
     "test": "jest",
     "lint": "xo"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": "npm run lint -- --fix"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/privatenumber/htmlvue-loader.git"
@@ -28,7 +36,9 @@
   },
   "homepage": "https://github.com/privatenumber/htmlvue-loader#readme",
   "devDependencies": {
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
+    "lint-staged": "^10.2.11",
     "memory-fs": "^0.5.0",
     "unionfs": "^4.4.0",
     "vue": "^2.6.11",
