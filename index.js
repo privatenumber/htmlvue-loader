@@ -2,7 +2,7 @@ const outdent = require('outdent');
 const cheerio = require('cheerio');
 const loaderUtils = require('loader-utils');
 
-module.exports = function(src) {
+module.exports = function (src) {
 	this.cacheable(true);
 
 	const options = loaderUtils.getOptions(this) || {};
@@ -13,10 +13,10 @@ module.exports = function(src) {
 		src = transformer(src);
 	}
 
-	let $ = cheerio.load(src, { xmlMode: true });
+	let $ = cheerio.load(src, {xmlMode: true});
 
 	if ($.root().children().length > 1) {
-		$ = cheerio.load(`<div>${$.xml()}</div>`, { xmlMode: true });
+		$ = cheerio.load(`<div>${$.xml()}</div>`, {xmlMode: true});
 	}
 
 	if (options.vOnce) {
@@ -32,7 +32,7 @@ module.exports = function(src) {
 	if (components) {
 		output += outdent`
 		<script>
-			${ Object.entries(components).map(([k, v]) => `import ${k} from '${v}';`) }
+			${Object.entries(components).map(([k, v]) => `import ${k} from '${v}';`)}
 			export default { components: { ${Object.keys(components)} } };
 		</script>
 		`;
