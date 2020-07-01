@@ -4,7 +4,7 @@
 	},
 	"overrides": [
 		{
-			"files": "*.spec.js",
+			"files": "test/*",
 			"env": "jest"
 		}
 	]
