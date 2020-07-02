@@ -15,7 +15,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "lint": "xo"
+    "lint": "xo",
+    "version": "standard-version --preset angular"
   },
   "husky": {
     "hooks": {
@@ -40,6 +41,7 @@
     "jest": "^26.1.0",
     "lint-staged": "^10.2.11",
     "memory-fs": "^0.5.0",
+    "standard-version": "^8.0.0",
     "unionfs": "^4.4.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.3",
