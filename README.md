@@ -1,10 +1,5 @@
-<h1>
-	htmlvue-loader
-	<a href="https://npm.im/htmlvue-loader"><img src="https://badgen.net/npm/v/htmlvue-loader"></a>
-	<a href="https://npm.im/htmlvue-loader"><img src="https://badgen.net/npm/dm/htmlvue-loader"></a>
-	<a href="https://packagephobia.now.sh/result?p=htmlvue-loader"><img src="https://packagephobia.now.sh/badge?p=htmlvue-loader"></a>
-</h1>
-	
+# htmlvue-loader <a href="https://npm.im/htmlvue-loader"><img src="https://badgen.net/npm/v/htmlvue-loader"></a> <a href="https://npm.im/htmlvue-loader"><img src="https://badgen.net/npm/dm/htmlvue-loader"></a> <a href="https://packagephobia.now.sh/result?p=htmlvue-loader"><img src="https://packagephobia.now.sh/badge?p=htmlvue-loader"></a>
+
 Webpack loader for compiling HTML to Vue
 
 ## :raising_hand: Why?
