@@ -19,15 +19,17 @@ module.exports = function (src) {
 		$ = cheerio.load(`<div>${$.xml()}</div>`, {xmlMode: true});
 	}
 
+	const rootElement = $.root().children().first();
+
 	if (options.vOnce) {
-		$.root().children().first().attr('v-once', 'true');
+		rootElement.attr('v-once', 'true');
 	}
 
 	if (options.vPre) {
-		$.root().children().first().attr('v-pre', 'true');
+		rootElement.attr('v-pre', 'true');
 	}
 
-	let output = `<template>${$.xml()}</template>`;
+	let output = `<template>${$.xml(rootElement)}</template>`;
 
 	if (components) {
 		output += outdent`

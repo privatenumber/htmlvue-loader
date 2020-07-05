@@ -46,6 +46,7 @@ function build(input, options = {}) {
 				new VueLoaderPlugin(),
 			],
 			entry: '/entry.html',
+			devtool: 'none',
 			output: {
 				path: '/',
 				filename: 'test.build.js',
